@@ -79,5 +79,13 @@ duk_ret_t JavaMethod::invoke(duk_context* ctx, JNIEnv* env, jobject javaThis) co
     args[i] = m_argumentLoaders[i]->pop(ctx, env, true);
   }
 
-  return m_methodBody(ctx, env, javaThis, args.data());
+  duk_ret_t ret = m_methodBody(ctx, env, javaThis, args.data());
+
+  for (ssize_t i=0; i<m_argumentLoaders.size(); ++i) {
+    if (!m_argumentLoaders[i]->isPrimitive()) {
+      env->DeleteLocalRef(args[i].l);
+    }
+  }
+
+  return ret;
 }
