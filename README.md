@@ -133,6 +133,12 @@ Building
 ```
 ./gradlew build
 ```
+local.properties 에 아래와 같이 sdk, ndk 경로를 지정해야 합니다.
+ndk 는 android sdk manager > SDK Tools 에서 ndk, CMake, LLDB 를 설치해야 합니다.
+```
+sdk.dir=/Users/jspark/Library/Android/sdk
+ndk.dir=/Users/jspark/Library/Android/sdk/ndk-bundle
+```
 
 Set the `java.library.path` system property to `build/` when you execute Java.
 
