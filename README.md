@@ -131,7 +131,7 @@ Building
 ## For Android
 
 ```
-./gradlew build
+./gradlew assembleRelease
 ```
 local.properties 에 아래와 같이 sdk, ndk 경로를 지정해야 합니다.
 ndk 는 android sdk manager > SDK Tools 에서 ndk, CMake, LLDB 를 설치해야 합니다.
