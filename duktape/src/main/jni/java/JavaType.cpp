@@ -163,7 +163,7 @@ struct Boolean : public Primitive {
     return value;
   }
 
-  jarray popArray(duk_context* ctx, JNIEnv* env, uint32_t count, bool inScript) const {
+  jarray popArray(duk_context* ctx, JNIEnv* env, uint32_t count, bool inScript) const override {
     jbooleanArray array = env->NewBooleanArray(count);
     for (auto i = count; i > 0u; --i) {
       const auto value = pop(ctx, env, inScript).z;
@@ -177,7 +177,7 @@ struct Boolean : public Primitive {
     return 1;
   }
 
-  duk_ret_t pushArray(duk_context* ctx, JNIEnv* env, const jarray& values) const {
+  duk_ret_t pushArray(duk_context* ctx, JNIEnv* env, const jarray& values) const override {
     const auto size = env->GetArrayLength(values);
     if (size == 0) {
       return 0;
@@ -228,7 +228,7 @@ struct Integer : public Primitive {
     return value;
   }
 
-  jarray popArray(duk_context* ctx, JNIEnv* env, uint32_t count, bool inScript) const {
+  jarray popArray(duk_context* ctx, JNIEnv* env, uint32_t count, bool inScript) const override {
     jintArray array = env->NewIntArray(count);
     for (auto i = count; i > 0u; --i) {
       const auto value = pop(ctx, env, inScript).i;
@@ -296,7 +296,7 @@ struct Double : public Primitive {
     return value;
   }
 
-  jarray popArray(duk_context* ctx, JNIEnv* env, uint32_t count, bool inScript) const {
+  jarray popArray(duk_context* ctx, JNIEnv* env, uint32_t count, bool inScript) const override {
     jdoubleArray array = env->NewDoubleArray(count);
     for (auto i = count; i > 0u; --i) {
       const auto value = pop(ctx, env, inScript).d;
